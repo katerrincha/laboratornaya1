@@ -13,7 +13,7 @@ class ClassInf
 public:
     ClassInf(); // констр-р по умолчанию
     ClassInf(const QString& fName);
-    bool is_f_exist(); // определяем существование
+    bool is_f_exist(); // определяем существование файла
     int get_f_size(); // определяем размер файла
     QString get_f_name(); // определяем имя файла
 };

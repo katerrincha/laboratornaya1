@@ -18,7 +18,6 @@ int ClassInf::get_f_size() // определяем размер файла
 {
     return f_size;
 }
-
 QString ClassInf::get_f_name() // определяем имя файла
 {
     return f_name;
