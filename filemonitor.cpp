@@ -1,15 +1,15 @@
 #include "filemonitor.h"
 
-FileMonitor::FileMonitor()
+FileMonitor::FileMonitor(QString fName)
 {
 
 }
 
-void FileMonitor::AddFile()
+void FileMonitor::AddFile(QString fName)
 {
-
+    QFileInfo newfile(fName);
 }
-void FileMonitor::DelFile()
+void FileMonitor::DelFile(QString fName)
 {
 
 }
