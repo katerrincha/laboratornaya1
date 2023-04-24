@@ -5,10 +5,12 @@
 ClassInf::ClassInf(const QString& fName)
 {
     f_name = fName;
-    QFileInfo file (f_name); // создаем объект и определяем его параметры
-    f_size = file.size();
-    f_exist = file.exists();
+    QFileInfo file (f_name); // создаем объект и определяем его параметры:
+    f_size = file.size(); // определяем размер
+    f_exist = file.exists(); // определяем, существует или нет
 }
+
+// геттеры:
 
 bool ClassInf::is_f_exist() // определяем существование
 {
