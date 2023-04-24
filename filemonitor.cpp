@@ -5,11 +5,11 @@ FileMonitor::FileMonitor(QString fName)
 
 }
 
-void FileMonitor::AddFile(QString fName)
+void FileMonitor::addfile(QString fName)
 {
     QFileInfo newfile(fName);
 }
-void FileMonitor::DelFile(QString fName)
+void FileMonitor::delfile(QString fName)
 {
 
 }
