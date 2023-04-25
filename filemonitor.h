@@ -15,7 +15,7 @@ public:
     //~FileMonitor(); // деструктор
     bool addfile(QString fName); // добавление нового файла
     bool delfile(QString fName); // удаление файла
-    //void update();
+    void updatefiles(); // обновление информации о файлах
 
 signals:
     void fileexists(QString fName, f_size); // сигнал о том, что файл создан
