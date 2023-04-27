@@ -5,6 +5,7 @@
 
 class ClassInf
 { // работа с полями: факт существования, размер и имя файла
+private:
     bool f_exist; // статус: true or false
     int f_size;
     QString f_name;

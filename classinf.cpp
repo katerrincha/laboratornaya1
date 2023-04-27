@@ -24,3 +24,5 @@ QString ClassInf::get_f_name() // определяем имя файла
 {
     return f_name;
 }
+
+

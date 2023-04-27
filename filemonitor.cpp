@@ -8,14 +8,13 @@ FileMonitor::FileMonitor(QString fName)
 bool FileMonitor::addfile(QString fName) // добавление нового файла
 {
     StateFile file1(fName);
+
     if (fileinfo.contains(file1)) // проверяем, есть ли уже этот файл
-    {
         return false;
-    }
     else
     {
         fileinfo.append(file1); // если файла нет - добавляем его
-        emit addtoMonitor(file1); // подаётся сигнал о добавлении файла
+        emit addtoMonitor(file1); // сигнал о добавлении
         return true;
     }
 }
@@ -23,17 +22,18 @@ bool FileMonitor::addfile(QString fName) // добавление нового ф
 bool FileMonitor::delfile(QString fName) // удаление файла
 {
     StateFile file2(fName);
-    if (fileinfo.contains(file2)) // проверяем, есть ли уже этот файл
+
+    if (!fileinfo.contains(file2)) // проверяем, есть ли этот файл
+        return false;
+    else // если есть:
     {
         fileinfo.removeOne(file2); // удаляем файл
-        emit delfromMonitor(file2); // подаётся сигнал об удалении файла
+        emit delfromMonitor(file2); // сигнал об удалении
         return true;
     }
-    else
-        return false;
 }
 
-void FileMonitor:: updatefiles() // обновление информации о файлах
+void FileMonitor::updatef() // обновление информации о файлах
 {
     int i;
     for (i = 0; i < fileinfo.count(); i++)
