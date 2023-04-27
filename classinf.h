@@ -4,7 +4,8 @@
 #include <QFileInfo>
 
 class ClassInf
-{ // работа с полями: факт существования, размер и имя файла
+{
+// работа с полями: факт существования, размер и имя файла
 private:
     bool f_exist; // статус: true or false
     qint64 f_size;
