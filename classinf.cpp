@@ -5,7 +5,7 @@
 ClassInf::ClassInf(const QString& fName)
 {
     f_name = fName;
-    QFileInfo file (f_name); // создаем объект и определяем его параметры:
+    QFileInfo file (f_name); // инициализируем информацию, определяем параметры файла:
     f_size = file.size(); // определяем размер
     f_exist = file.exists(); // определяем, существует или нет
 }
