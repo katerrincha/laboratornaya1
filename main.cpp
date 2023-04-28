@@ -9,11 +9,20 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
     setlocale(LC_ALL, "Russian");
-    //FileMonitor& mon; // создаем объект класса
+    FileMonitor F; // создаем объекты классов
+    fileprinter P;
 
-    mon.addfile("C:/Qt/projects/laboratornaya1/f1.txt"); // добавляем файл
-    //mon.delfile("C:/Qt/projects/laboratornaya1/f1.txt"); // удаляем файл
+    F.addfile("C:/Qt/projects/laboratornaya1/f1.txt"); // добавляем файл
+    //F.delfile("C:/Qt/projects/laboratornaya1/f1.txt"); // удаляем файл
 
+    QObject::connect(&F, &FileMonitor::fileexists, &P, &fileprinter::printexists); // организуем сигнально-слотовое соединение
+    QObject::connect(&F, &FileMonitor::filechanged, &P, &fileprinter::printchanged);
+    QObject::connect(&F, &FileMonitor::filedeleted, &P, &fileprinter::printdeleted);
+
+    while(true)
+    {
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
 
     return a.exec();
 }
