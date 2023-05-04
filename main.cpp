@@ -1,8 +1,11 @@
 #include <QCoreApplication>
 #include <iostream>
 #include <classinf.h>
-#include <filemonitor.h>
-#include <fileprinter.h>
+#include "filemonitor.h"
+#include "fileprinter.h"
+#include <thread>
+#include <chrono>
+#include <QLocale>
 using namespace std;
 
 int main(int argc, char *argv[])
@@ -12,8 +15,7 @@ int main(int argc, char *argv[])
     FileMonitor F; // создаем объекты классов
     fileprinter P;
 
-    F.addfile("C:/Qt/projects/laboratornaya1/f1.txt"); // добавляем файл
-    //F.delfile("C:/Qt/projects/laboratornaya1/f1.txt"); // удаляем файл
+    F.addfile("C:\\filesQt\\f1.txt"); // добавляем файл
 
     QObject::connect(&F, &FileMonitor::fileexists, &P, &fileprinter::printexists); // организуем сигнально-слотовое соединение
     QObject::connect(&F, &FileMonitor::filechanged, &P, &fileprinter::printchanged);
@@ -21,6 +23,7 @@ int main(int argc, char *argv[])
 
     while(true)
     {
+        F.updatef();
         this_thread::sleep_for(chrono::milliseconds(100));
     }
 

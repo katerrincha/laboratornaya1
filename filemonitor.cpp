@@ -1,8 +1,7 @@
 #include "filemonitor.h"
 
-FileMonitor::FileMonitor(QString fName)
+FileMonitor::FileMonitor()
 {
-
 }
 
 bool FileMonitor::addfile(QString fName) // добавление нового файла
@@ -14,21 +13,6 @@ bool FileMonitor::addfile(QString fName) // добавление нового ф
     else
     {
         fileinfo.append(file1); // если файла нет - добавляем его
-        emit addtoMonitor(file1); // сигнал о добавлении
-        return true;
-    }
-}
-
-bool FileMonitor::delfile(QString fName) // удаление файла
-{
-    ClassInf file2(fName);
-
-    if (!fileinfo.contains(file2)) // проверяем, есть ли этот файл
-        return false;
-    else // если есть:
-    {
-        fileinfo.removeOne(file2); // удаляем файл
-        emit delfromMonitor(file2); // сигнал об удалении
         return true;
     }
 }
