@@ -17,11 +17,11 @@ int main(int argc, char *argv[])
     QCoreApplication a(argc, argv);
     //setlocale(LC_ALL, "Russian");
     QString str, str1, str2, str3;
-    FileMonitor F; // создаем объекты классов
+    FileMonitor& F = FileMonitor::Instance();
     fileprinter P;
     int n;
 
-    //F.addfile("C:\\filesQt\\f1.txt");
+    //F.addfile("C:\filesQt\f1.txt");
     //F.addfile("C:\\filesQt\\f2.txt");
 
     QObject::connect(&F, &FileMonitor::fileexists, &P, &fileprinter::printexists); // организуем сигнально-слотовое соединение
