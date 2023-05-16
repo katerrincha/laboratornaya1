@@ -9,17 +9,20 @@ class FileMonitor: public QObject
     Q_OBJECT
 private:
     QVector <ClassInf> fileinfo; // контейнер
+    FileMonitor();
+    FileMonitor& operator= (FileMonitor const&);
+    FileMonitor(FileMonitor const&);
 
 public:
     bool addfile(QString fName); // добавление нового файла в рассмотрение
     void updatef(); // обновление информации о файлах
-    FileMonitor();
+    bool deletefile(QString fName);
+    static FileMonitor& Instance();
 
-signals: // сигналы:
-    void fileexists(QString fName, qint64 f_size); // сигнал о том, что файл создан
-    void filechanged(QString fName, qint64 f_size); // сигнал об измнении размера файла
-    void filedeleted(QString fName); // сигнал о том, что файл был удалён
-
+signals: // сигналы о том, что файл создан/изменен/удален
+    void fileexists(QString fName, qint64 f_size);
+    void filechanged(QString fName, qint64 f_size);
+    void filedeleted(QString fName);
 };
 
 #endif // FILEMONITOR_H

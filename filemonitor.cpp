@@ -2,6 +2,7 @@
 
 FileMonitor::FileMonitor()
 {
+
 }
 
 bool FileMonitor::addfile(QString fName) // добавление нового файла
@@ -17,6 +18,19 @@ bool FileMonitor::addfile(QString fName) // добавление нового ф
     }
 }
 
+bool FileMonitor::deletefile(QString fName)
+{
+    ClassInf file2(fName);
+
+    if (!fileinfo.contains(file2))
+        return false;
+    else
+    {
+        fileinfo.removeOne(file2);
+        return true;
+    }
+}
+
 void FileMonitor::updatef() // обновление информации о файлах
 {
     int i;
@@ -28,17 +42,25 @@ void FileMonitor::updatef() // обновление информации о фа
             fileinfo[i] = newfile; // обновляем информацию
             emit fileexists(newfile.get_f_name(), newfile.get_f_size()); // подаётся сигнал о создании файла
         }
+
         else if ((newfile.is_f_exist() != fileinfo[i].is_f_exist()) && (!newfile.is_f_exist())) // иначе: удалён ли файл
         {
             fileinfo[i] = newfile;
-            emit filedeleted(newfile.get_f_name()); // подаётся сигнал об удалении файла
+            emit filedeleted(newfile.get_f_name());
         }
         else if ((newfile.get_f_size() != fileinfo[i].get_f_size()) && (newfile.is_f_exist())) // иначе: изменился ли файл
         {
            fileinfo[i] = newfile;
-           emit filechanged(newfile.get_f_name(), newfile.get_f_size()); // подаётся сигнал об изменении файла
+           emit filechanged(newfile.get_f_name(), newfile.get_f_size());
         }
+
     }
+}
+
+FileMonitor& FileMonitor::Instance()
+{
+    static FileMonitor F;
+    return F;
 }
 
 
